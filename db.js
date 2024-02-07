@@ -2,8 +2,15 @@
 
 const mongoose = require('mongoose');
 require("dotenv").config();
-const Connection = mongoose.connect(process.env.MONGODB_URL)
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URl);
+    console.log("connected");
+  } catch (error) {
+    console.log(error);
+  }
+};
 mongoose.set("debug", true);
 
 
-module.exports =Connection
+module.exports = connect;
